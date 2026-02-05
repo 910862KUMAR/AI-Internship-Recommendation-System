@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.pkl
+*.joblib
+node_modules/
+.env
+dist/
+build/
