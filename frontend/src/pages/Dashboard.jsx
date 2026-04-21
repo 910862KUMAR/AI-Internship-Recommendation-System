@@ -28,7 +28,6 @@ export default function Dashboard() {
 
       const data = await response.json();
 
-      // ⭐ Store recommendations
       setRecommendations(data);
       localStorage.setItem("recommendations", JSON.stringify(data));
 
@@ -159,9 +158,66 @@ export default function Dashboard() {
                     <span>⏳ {job.duration}</span>
                   </div>
 
+                  {/* DOMAIN */}
+                  {job.domain && (
+                    <div className="mt-2 text-cyan-400 text-sm">
+                      🧠 Domain: {job.domain}
+                    </div>
+                  )}
+
+                  {/* SKILLS */}
+                  {job.matched_skills && (
+                    <div className="text-yellow-400 text-sm mt-1">
+                      🛠 Skills: {job.matched_skills.join(", ")}
+                    </div>
+                  )}
+
+                  {/* MATCH SCORE */}
                   <div className="mt-3 text-green-400 font-semibold">
                     Match Score: {job["Match Score (%)"]}%
                   </div>
+
+                  {/* RANK */}
+                  {job.rank && (
+                    <div className="text-indigo-400 text-sm mt-2">
+                      🏆 Rank: #{job.rank}
+                    </div>
+                  )}
+
+                  {/* SKILL GAP */}
+                  {job.skill_gap && job.skill_gap.length > 0 && (
+                    <div className="text-red-400 text-sm mt-1">
+                      ⚠️ Skill Gap: {job.skill_gap.join(", ")}
+                    </div>
+                  )}
+
+                  {/* LEARNING */}
+                  {job.learning_recommendation && job.learning_recommendation.length > 0 && (
+                    <div className="text-blue-400 text-sm mt-1">
+                      📚 Learn: {job.learning_recommendation.join(", ")}
+                    </div>
+                  )}
+
+                  {/* AI SCORE */}
+                  {job.resume_ai_score && (
+                    <div className="text-purple-400 text-sm mt-1">
+                      🤖 Resume AI Score: {job.resume_ai_score}%
+                    </div>
+                  )}
+
+                  {/* APPLY LINK */}
+                  {job.apply_link && (
+                    <div className="mt-3">
+                      <a
+                        href={job.apply_link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-green-400 underline hover:text-green-300"
+                      >
+                        🚀 Apply Internship
+                      </a>
+                    </div>
+                  )}
 
                 </div>
 
